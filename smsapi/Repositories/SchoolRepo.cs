@@ -21,5 +21,10 @@ namespace smsapi.Repositories
         {
            return await _smsDbContext.Schools.ToListAsync();
         }
+
+        public async Task<School> GetSchoolbyId(int id)
+        {
+                return await _smsDbContext.Schools.FirstOrDefaultAsync(x => x.Id == id);  
+        }
     }
 }
