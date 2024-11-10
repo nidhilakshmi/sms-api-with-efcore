@@ -47,5 +47,24 @@ namespace smsapi.test.ControllersTest
             //Assert
 
         }
+
+        [Fact] 
+        public void GetSchoolById_WithValidId_ReturnsSchool()
+        {
+            //Arrange
+            School s1 = new School() { Id = 1, Name = "Vivekananda", Place = "Bannur" };
+            _mockSchoolRepo.Setup(x => x.GetSchoolbyId(It.IsAny<int>())).ReturnsAsync(s1);
+            //Act
+            var httpResponse = _schoolController.GetSchoolById(1);
+            //Assert
+        }
+
+        [Fact]
+        public void GetSchoolById_WithId0_ReturnsBadrequest()
+        {
+            //Arrange
+            //Act
+           var httpResponse = _schoolController.GetSchoolById(0);
+        }
     }
 }

@@ -18,9 +18,9 @@ namespace smsapi.Controllers
         [HttpPost]
         public async Task<IActionResult> RegisterSchool(School school)
         {
-           int numberOfSchoolsCreated = await _schoolRepo.CreateSchool(school);
-           var result = 10 * numberOfSchoolsCreated;
-           return Ok(result);
+            int numberOfSchoolsCreated = await _schoolRepo.CreateSchool(school);
+            var result = 10 * numberOfSchoolsCreated;
+            return Ok(result);
         }
 
         [HttpGet]
@@ -28,6 +28,21 @@ namespace smsapi.Controllers
         {
             List<School> numberOfSchoolsPresent = await _schoolRepo.GetAllSchools();
             return Ok(numberOfSchoolsPresent);
+        }
+
+        [HttpGet]
+        [Route("{id}")]
+        public async Task<IActionResult> GetSchoolById(int id)
+        {
+            if (id == 0)
+            {
+                return BadRequest("Id Cannot be 0");
+            }
+            else
+            {
+                var school = await _schoolRepo.GetSchoolbyId(id);
+                return Ok(school);
+            }
         }
     }
 }

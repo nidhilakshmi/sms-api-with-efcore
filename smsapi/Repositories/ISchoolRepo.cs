@@ -6,5 +6,6 @@ namespace smsapi.Repositories
     {
         Task<int> CreateSchool(School school);
         Task<List<School>> GetAllSchools();
+        Task<School> GetSchoolbyId(int id);
     }
 }
